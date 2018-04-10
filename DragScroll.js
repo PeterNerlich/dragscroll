@@ -113,7 +113,7 @@ var DragScroll = function dragScroll(rootel) {
 	};
 
 	let findScroll = el => {
-		while(el !== root && el !== null) {
+		while(el !== root.parentNode && el !== null) {
 			let style = getComputedStyle(el);
 			let scrollableInX = (style.overflowX === 'auto' || style.overflowX === 'scroll') && el.scrollWidth > el.clientWidth;
 			let scrollableInY = (style.overflowY === 'auto' || style.overflowY === 'scroll') && el.scrollHeight > el.clientHeight;
