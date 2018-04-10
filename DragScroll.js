@@ -131,7 +131,7 @@ var DragScroll = function dragScroll(rootel) {
 		if (enabled) {
 			this.deactivate();
 		}
-		root = rootel instanceof Node ? rootel : document;
+		root = !rootel ? root : (rootel instanceof Node ? rootel : document);
 
 		root.addEventListener('mousemove', mousemove, true);
 		root.addEventListener('mousedown', mousedown, true);
