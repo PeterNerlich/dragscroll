@@ -60,6 +60,7 @@ var DragScroll = function dragScroll(rootel) {
 	let mousemove = e => {
 		if (state.clicked) {
 			e.preventDefault();
+			e.stopPropagation();
 			updateScrollPos(e);
 			state.clickX = e.pageX;
 			state.clickY = e.pageY;
@@ -70,6 +71,7 @@ var DragScroll = function dragScroll(rootel) {
 			state.scrollEl = findScroll(e.target);
 			if (state.scrollEl !== null) {
 				e.preventDefault();
+				e.stopPropagation();
 				state.time = Date.now();
 				state.clicked = true;
 				state.momentum = {x: 0, y: 0};
@@ -84,6 +86,7 @@ var DragScroll = function dragScroll(rootel) {
 	let mouseup = e => {
 		if (state.clicked) {
 			e.preventDefault();
+			e.stopPropagation();
 			state.clicked = false;
 			state.momentum.x *= 100/state.dtime;
 			state.momentum.y *= 100/state.dtime;
@@ -94,6 +97,7 @@ var DragScroll = function dragScroll(rootel) {
 	let wheel = e => {
 		if (state.clicked) {
 			e.preventDefault();
+			e.stopPropagation();
 		} else {
 			state.momentum = {x: 0, y: 0};
 		}
