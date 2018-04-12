@@ -1,34 +1,9 @@
 # DragScroll
 
-*Tiny JS library to scroll the page and/or sub elements by dragging with the middle mouse button.*
+*Chrome extension and Firefox AddOn for scrolling the page and sub elements by dragging with the middle mouse button.*
 
-## How to use
+## Build
 
-You can use an instance of `DragScroll` on any DOM element, or just on `document` directly. It will then intercept clicks with the middle mouse button and `mousemove` and `mouseup` events following it and scroll the nearest scollable container as the cursor is dragged:
+Building the `.zip`s for the Chrome Webstore and AMO is automated by a small Makefile. From the repositories root directory, run `make` to build both `.zip`s as `build/chrome.zip` and `build/firefox.zip`.
 
-```js
-var scroller = new DragScroll(target);
-```
-
-where `target` is a DOM element or `document`. If target is not a DOM element, `document` is used as the default. Exception: If `false` is passed, DragScroll will not immediately bind to the mouse events.
-
-```js
-// boolean, returns whether DragScroll is listening to events
-scroller.isActivated();
-
-// starts listening to events, calls deactivate() first if already activated to restart
-scroller.activate(target);
-
-// stops listening to events, stops scroll momentum
-scroller.deactivate();
-```
-
-If `target` is specified on `activate()`, it will be used as the new most outer scroll element (or `document`, if it is not a DOM Node).
-
-DragScroll also keeps a momentum to keep scrolling when the mouse has already been released. Without it, scrolling feels very weird. You can adjust how fast the scrolling stops by adjusting `friction` to a value between `0` and `1`. The default is `0.9`.
-
-```js
-scroller.friction = 0.9;
-```
-
-Keep in mind that `friction` is the *factor* the momentum gets `scaled` by each update. As such, `0` will result in an immediate stop while `1` will make the element scroll infinitely at a constant speed. Because the factor is applied several times a second, a factor below `0.8` will already feel very sudden.
+These can be built individually building only the targets `make chrome` and `make ff`. Building these takes the respective manifest and copies it to `manifest.json` before packing it as `.zip`. This file is not deleted afterwards (which can be done with `make clean`, which also deletes `build/*`). This way one can quickly test and use the Extension/AddOn, without uploading individual builds or manually loading a built `.zip` with the browser, which might also be rejected for security reasons. Instead, the `src/` directory itself can be used to "debug" the Extension/AddOn. In Chrome, look for the *Load unpacked extension...* button on `chrome://extensions`, in Firefox open the tools menu (gear next to search bar on `about:addons`), go to *Debug Add-Ons*, check *Enable add-on debugging* and use *Load Temporary Add-on*. You might need to *Reload (Ctrl+R)* sometimes the Extension to notice some changes though (I am not at all sure).

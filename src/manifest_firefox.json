@@ -1,0 +1,41 @@
+{
+	"manifest_version": 2,
+
+	"name": "Drag Scroll",
+	"description": "Scroll the page and elements by dragging like on a tablet or smartphone",
+	"icons": {
+		"256": "icons/icon-256.png",
+		"128": "icons/icon-128.png",
+		"96": "icons/icon-96.png",
+		"48": "icons/icon-48.png"
+	},
+	"version": "0.1.0b",
+	"content_scripts": [
+		{
+			"matches": ["*://*/*", "http://*/*", "https://*/*", "ftp://*/*", "file://*/*"],
+			"js": ["DragScroll.js", "dsapp.js"],
+			"run_at": "document_start",
+			"all_frames": true
+		}
+	],
+	"background": {
+		"scripts": []
+	},
+	"browser_action": {
+		"default_icon": "icons/icon-32.png",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"activeTab",
+		"storage",
+		"http://*/*",
+		"https://*/*",
+		"ftp://*/*",
+		"file://*/*"
+	],
+	"applications": {
+		"gecko": {
+			"id": "{96bec0f4-e8b0-487d-97dc-09197dab4340}"
+		}
+	}
+}

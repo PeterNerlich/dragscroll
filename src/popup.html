@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Drag Scroll</title>
+	<style type="text/css">
+		html {
+			font-family: "Open Sans", Arial, sans-serif;
+			font-size: 1em;
+		}
+		body {
+			margin: 0;
+			padding: .62em;
+			width: 17em;
+		}
+
+		select, input, button {
+			height: 2em;
+		}
+
+		input[type="checkbox"] {
+			display: none;
+		}
+
+		label {
+			line-height: 1.7em;
+		}
+
+		label div {
+			display: inline-block;
+			border: .2em solid #47a;
+			border-radius: .3em;
+			height: 1.7em;
+			width: 1.7em;
+			margin-right: .1em;
+			text-align: center;
+			line-height: 1.0em;
+			cursor: pointer;
+		}
+
+		label div i {
+			position: relative;
+			top: 0.16em;
+			font-size: 2em;
+			opacity: 0;
+		}
+
+		label:hover div {
+			background: #cdf;
+		}
+
+		input:checked+label div i {
+			opacity: 1;
+		}
+
+		input:checked+label div {
+			border: .2em solid #138;
+			background: #8bf;
+		}
+
+		.infotext {
+			font-style: italic;
+			font-size: .8em;
+			text-align: justify;
+		}
+
+
+		[data-app] {
+			display: none;
+		}
+
+		[data-app-show="Chrome"] [data-app="Chrome"], [data-app-show="Firefox"] [data-app="Firefox"] {
+			display: inherit;
+		}
+	</style>
+	<script src="popup.js"></script>
+</head>
+<body>
+
+<div>
+	<input id="extactive" type="checkbox">
+	<label for="extactive">
+		<div><i>✓</i></div>
+		enabled globally
+	</label>
+</div>
+<br>
+<div>
+	<input id="friction" type="range" min="0" max="1" step=".01">
+	<label for="friction">
+		friction 
+		<i>0.9</i>
+	</label>
+</div>
+<p class="infotext">This might interfere with or be interfered with by pages that also utilize mouse middle button and wheel events.</p>
+
+<p data-app="Chrome" class="infotext">Feel free to send any feedback, suggestions etc. via the SUPPORT–Tab in the <a id="webstore_support" href="https://chrome.google.com/webstore/detail/drag-scroll/ohebmbefnbokjgdjlppkeibiobnhcgan/support" taget="_blank">Webstore page</a>! Your help is greatly appriciated!</p>
+<p data-app="Firefox" class="infotext">Feel free to send any feedback, suggestions etc. via the Support E-mail link at the <a id="addon_review" href="https://addons.mozilla.org/en-US/firefox/addon/drag-scroll/#reviews" target="_blank">Add-on page</a>! Your help is greatly appriciated!</p>
+
+</body>
+</html>
